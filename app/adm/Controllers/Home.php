@@ -14,13 +14,12 @@ class Home
     public function index()
     {
         $select = new AdmSelect();
-
         $systems = new Dashboard();
         try {
 
             $theme = $select->select('THEME', $_SESSION['user']);
 
-            if (!empty ($theme)) {
+            if (!empty($theme)) {
                 setcookie('theme', $theme['theme'], 0, '/');
             }
 
