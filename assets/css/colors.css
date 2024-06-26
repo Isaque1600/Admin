@@ -1,0 +1,119 @@
+/* root colors */
+
+:root {
+  --background-color: #f9f9f9ce;
+  --first-color: #030303; /* header color */
+  --second-color: #b10505; /* Dropdown and sidebar color */
+  --third-color: #f2eeee59; /* Side bar list and hover options color */
+  --forth-color: #dadee1cd; /* Sections background color */
+  --fifth-color: #c6cfd3; /* Select and popUp background color */
+
+  /* Default text colors */
+  --text-color: #050505;
+  --text-hover-color: #1a1a1a;
+  --sidebar-btn-color: #cd0101;
+
+  /* Table colors */
+  --scrollbar-color: #c6cfd3;
+  --pagination-hover-color: #c8c9c9cd;
+  --list-head-color: rgb(156, 156, 156);
+  --list-body-color1: rgb(199, 199, 199);
+  --list-body-color2: rgb(196, 196, 196);
+
+  /* Table button colors */
+  --edit-color: rgb(50, 140, 50);
+  --visualize-color: rgb(50, 50, 232);
+  --delete-color: rgb(224, 7, 7);
+  --edit-hover-color: rgb(2, 100, 2);
+  --visualize-hover-color: rgb(18, 18, 180);
+  --delete-hover-color: rgb(184, 0, 0);
+
+  /* Dashboard square colors */
+  --dashboard-color1: #ed9c28;
+  --dashboard-color2: #31d031;
+  --dashboard-color3: #5748dd;
+  --dashboard-color4: #d2322d;
+
+  --shadow-color: rgba(0, 0, 0, 0.2);
+}
+
+/* Dark scheme colors */
+.dark-theme {
+  --background-color: rgb(57, 57, 57);
+  --first-color: #070707; /* header color */
+  --second-color: rgb(32, 32, 32); /* Dropdown and sidebar color */
+  --third-color: rgb(55, 55, 55); /* Side bar list and hover options color */
+  --forth-color: rgb(65, 65, 65); /* Sections background color */
+  --fifth-color: rgb(100, 100, 100); /* Select and popUp background color */
+
+  /* Default text colors */
+  --text-color: #fff;
+  --text-hover-color: #d0d0d0;
+  --sidebar-btn-color: #ffffff;
+
+  /* Table colors */
+  --scrollbar-color: rgb(100, 100, 100);
+  --pagination-hover-color: rgb(60, 60, 60);
+  --list-head-color: rgb(40, 40, 40);
+  --list-body-color1: rgb(57, 57, 57);
+  --list-body-color2: rgb(60, 60, 60);
+
+  /* Table button colors */
+  --edit-color: rgb(21, 140, 21);
+  --visualize-color: rgb(37, 37, 220);
+  --delete-color: rgb(224, 7, 7);
+  --edit-hover-color: rgb(2, 100, 2);
+  --visualize-hover-color: rgb(18, 18, 180);
+  --delete-hover-color: rgb(184, 0, 0);
+
+  /* Dashboard square colors */
+  --dashboard-color1: #ed9c28;
+  --dashboard-color2: #31d031;
+  --dashboard-color3: #5748dd;
+  --dashboard-color4: #d2322d;
+
+  --shadow-color: rgba(0, 0, 0, 0.5);
+}
+
+@media (prefers-color-scheme: dark-theme) {
+  .system-theme {
+    --background-color: rgb(57, 57, 57);
+    --first-color: #070707; /* header color */
+    --second-color: rgb(32, 32, 32); /* Dropdown and sidebar color */
+    --third-color: rgb(55, 55, 55); /* Side bar list and hover options color */
+    --forth-color: rgb(65, 65, 65); /* Sections background color */
+    --fifth-color: rgb(100, 100, 100); /* Select and popUp background color */
+
+    /* Default text colors */
+    --text-color: #fff;
+    --text-hover-color: #d0d0d0;
+    --sidebar-btn-color: #ffffff;
+
+    /* Table colors */
+    --scrollbar-color: rgb(100, 100, 100);
+    --pagination-hover-color: rgb(60, 60, 60);
+    --list-head-color: rgb(40, 40, 40);
+    --list-body-color1: rgb(57, 57, 57);
+    --list-body-color2: rgb(60, 60, 60);
+
+    /* Table button colors */
+    --edit-color: rgb(21, 140, 21);
+    --visualize-color: rgb(37, 37, 220);
+    --delete-color: rgb(224, 7, 7);
+    --edit-hover-color: rgb(2, 100, 2);
+    --visualize-hover-color: rgb(18, 18, 180);
+    --delete-hover-color: rgb(184, 0, 0);
+
+    /* Dashboard square colors */
+    --dashboard-color1: #ed9c28;
+    --dashboard-color2: #31d031;
+    --dashboard-color3: #5748dd;
+    --dashboard-color4: #d2322d;
+
+    --shadow-color: rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* html {
+  visibility: hidden;
+} */

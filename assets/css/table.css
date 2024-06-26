@@ -1,0 +1,634 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;600;700&family=Ubuntu+Mono:wght@400;700&display=swap");
+@import url(colors.css);
+
+/* font-family: 'Inter', sans-serif; */
+/* font-family: 'Ubuntu Mono', monospace; */
+
+* {
+  box-sizing: border-box;
+}
+
+/* Users */
+
+/* Users Section */
+
+.users-section {
+  border: 2px solid var(--forth-color);
+  background-color: var(--forth-color);
+  box-shadow: 0px 2px 3px 1px var(--shadow-color);
+  border-radius: 15px;
+  padding: 15px;
+  margin: 10px;
+  transition: all 0.5s ease;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: 10px;
+}
+
+/* Users table top */
+
+.top {
+  display: flex;
+  width: 100%;
+  margin-bottom: 15px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.top > .title {
+  font-family: "Ubuntu Mono", monospace;
+  font-weight: 700;
+  font-size: 17px;
+  padding: 16px 16px;
+}
+
+.top > .btn {
+  font-weight: 600;
+  font-size: 17px;
+}
+
+.top > .btn a {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 10px;
+  color: var(--text-color);
+  background-color: rgb(220, 37, 37);
+  border: transparent solid;
+  border-radius: 10px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.top > .btn a:hover {
+  background-color: rgb(180, 18, 18);
+}
+
+/* Users table top End */
+
+.options > .form {
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.dropdown {
+  position: relative;
+  background: transparent;
+  border: none;
+  margin: 0 15px;
+  gap: 2px;
+  display: flex;
+  flex-direction: column;
+  font-size: 17px;
+}
+
+.dropdown > button {
+  background: var(--fifth-color);
+  border: none;
+  outline: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 3px 3px 7px -3px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  color: var(--text-color);
+}
+
+.dropdown > button > .value {
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  outline: none;
+  cursor: pointer;
+  width: 100px;
+  color: var(--text-color);
+}
+
+.dropdown > button > .value::placeholder {
+  color: var(--text-color);
+}
+
+.dropdown > button > .arrow {
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid var(--text-color);
+  transition: transform ease-in-out 0.2s;
+}
+
+.dropdown > button.active > .arrow {
+  transform: rotate(180deg);
+}
+
+.dropdown > ul {
+  position: absolute;
+  background-color: var(--fifth-color);
+  border-radius: 5px;
+  text-align: left;
+  top: 2em;
+  z-index: -1;
+  transform: translateY(-7px);
+  transition: transform ease-out 1s;
+  visibility: hidden;
+  box-shadow: 3px 3px 7px -2px rgba(0, 0, 0, 0.4),
+    -3px -5px 15px 0.2px rgba(0, 0, 0, 0.14);
+}
+
+.dropdown.active > ul {
+  width: 100%;
+  z-index: 9;
+  visibility: visible;
+  transform: translateY(0);
+  transition: transform ease-out 0.2s;
+}
+
+.dropdown > ul li {
+  width: 100%;
+  background-color: var(--fifth-color);
+  list-style-type: none;
+  padding: 10px 5px;
+}
+
+.dropdown > ul li:first-child {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.dropdown > ul li:last-child {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.dropdown > ul li:hover {
+  cursor: pointer;
+  background-color: var(--forth-color);
+}
+
+.multi-select > input {
+  display: none;
+}
+
+.multi-select {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  width: 270px;
+  height: 30px;
+  margin: 0px 15px;
+  border-radius: 5px;
+  box-shadow: 3px 3px 7px -3px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  background-color: var(--fifth-color);
+}
+
+.multi-select > .textBox {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+}
+
+.multi-select > .arrow {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid var(--text-color);
+  transition: transform ease-in-out 0.2s;
+}
+
+.multi-select.active > .arrow {
+  transform: rotate(180deg);
+}
+
+.multi-select > .selectBox {
+  position: absolute;
+  top: 2em;
+  background-color: var(--fifth-color);
+  z-index: 9;
+  width: 100%;
+  height: calc(50px * 4);
+  overflow-y: auto;
+  text-align: left;
+  border-radius: 5px;
+  box-shadow: 3px 3px 7px -2px rgba(0, 0, 0, 0.4),
+    -3px -5px 15px 0.2px rgba(0, 0, 0, 0.14);
+  transform: translateY(-7px);
+  animation: transform ease-out 1s;
+  visibility: hidden;
+  scrollbar-width: 2px;
+}
+
+.multi-select > .selectBox.active {
+  visibility: visible;
+  transform: translateY(0);
+  transition: transform ease-out 0.2s;
+}
+
+.multi-select > .selectBox ul {
+  list-style-type: none;
+}
+
+.multi-select > .selectBox ul li {
+  width: 100%;
+  padding: 10px 5px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  text-transform: capitalize;
+}
+
+.multi-select > .selectBox ul li::before {
+  content: "";
+  color: rgb(255, 0, 0);
+  text-align: center;
+  width: 20px;
+  height: 20px;
+  /* padding-bottom: 3px; */
+  display: inline-block;
+  border: 1.5px black solid;
+  border-radius: 4px;
+  margin-right: 10px;
+  font-weight: 1000;
+}
+
+.multi-select > .selectBox ul li.active::before {
+  content: "✓";
+  font-size: 15px;
+}
+
+.multi-select > .selectBox ul li:first-child {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.multi-select > .selectBox ul li:last-child {
+  border-bottom-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.multi-select > .selectBox ul li:hover {
+  cursor: pointer;
+  background-color: var(--forth-color);
+}
+
+.search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 5px;
+  /* height: 30px; */
+  width: 100%;
+  margin: 10px 15px;
+  flex-wrap: wrap;
+}
+
+.search input {
+  background: var(--fifth-color);
+  color: var(--text-color);
+  border: none;
+  outline: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  box-shadow: 3px 3px 7px -3px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  font-size: 16px;
+  /* width: 1em; */
+}
+
+.search > .dropdown > button > input {
+  height: 20px;
+  box-shadow: 0 0 0 0;
+}
+
+.search input::placeholder {
+  color: var(--text-color);
+}
+
+/* Users table */
+
+.table {
+  width: 100%;
+  overflow-x: scroll;
+  scrollbar-width: none;
+}
+
+.table-content {
+  width: 100%;
+  position: relative;
+  user-select: all;
+  /* display: flex;
+  flex-direction: column; */
+}
+
+.table-content thead .list-head-content {
+  background-color: var(--list-head-color);
+  color: var(--text-color);
+  padding: 10px;
+}
+
+.table-content thead .list-head-content:first-child {
+  border-top-left-radius: 5px;
+}
+
+.table-content thead .list-head-content:last-child {
+  border-top-right-radius: 5px;
+}
+
+.table-content tbody .list-body-content {
+  background-color: var(--list-body-color1);
+  color: var(--text-color);
+  padding: 8px 10px;
+  text-align: center;
+  user-select: text;
+}
+
+.table-content tbody .list-body-content:first-child {
+  border-bottom-left-radius: 5px;
+}
+
+.table-content tbody .list-body-content:last-child {
+  border-bottom-right-radius: 5px;
+}
+
+.table-content tbody tr:nth-child(even) .list-body-content {
+  background-color: var(--list-body-color2);
+}
+
+.table-content tbody .list-body-buttons:last-child {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.table-content tbody .list-body-content:last-child :is(a, button) {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border-radius: 5px;
+  border: transparent;
+  padding: 8px;
+  color: var(--text-color);
+  font-family: "Ubuntu Mono", monospace;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.table-content tbody .list-body-content:last-child :is(a, button):nth-child(1) {
+  background-color: var(--visualize-color);
+}
+
+.table-content
+  tbody
+  .list-body-content:last-child
+  :is(a, button):nth-child(1):hover {
+  background-color: var(--visualize-hover-color);
+}
+
+.table-content tbody .list-body-content:last-child :is(a, button):nth-child(2) {
+  background-color: var(--edit-color);
+}
+
+.table-content
+  tbody
+  .list-body-content:last-child
+  :is(a, button):nth-child(2):hover {
+  background-color: var(--edit-hover-color);
+}
+
+.table-content tbody .list-body-content:last-child :is(a, button):nth-child(3) {
+  background-color: var(--delete-color);
+}
+
+.table-content
+  tbody
+  .list-body-content:last-child
+  :is(a, button):nth-child(3):hover {
+  background-color: var(--delete-hover-color);
+}
+
+.table-content > tbody .list-body-content.email {
+  overflow: hidden;
+  height: 100%;
+}
+
+.table-content > tbody .email {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  overflow-wrap: break-word;
+  gap: 5px;
+}
+
+.table-content > tbody .pass {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.table-content > tbody :where(.pass, .email) button {
+  background-color: transparent !important;
+  cursor: pointer;
+  border: none;
+}
+
+.table-content > tbody :where(.pass, .email) input {
+  display: none;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  text-align: center;
+}
+
+.edit-system {
+  background-color: var(--edit-color) !important;
+}
+
+.edit-system:hover {
+  background-color: var(--edit-hover-color) !important;
+}
+
+.delete-system {
+  background-color: var(--delete-color) !important;
+}
+
+.delete-system:hover {
+  background-color: var(--delete-hover-color) !important;
+}
+
+.content-none {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 24px;
+  margin-top: 20px;
+}
+
+.content-none > .content-none-icon {
+  width: 100px;
+  height: 100px;
+}
+
+/* Users table End */
+
+/* Users pagination */
+
+.content-pagination {
+  margin: 15px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+
+.content-pagination .pages a {
+  text-align: center;
+  text-decoration: none;
+  color: var(--text-color);
+  font-family: "Inter", sans-serif;
+  font-size: 17px;
+  padding: 5px;
+}
+
+.content-pagination .pages a:hover {
+  background-color: var(--pagination-hover-color);
+  color: var(--text-hover-color);
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+/* Users pagination End */
+
+/* Users Section End */
+
+/* Pop Up */
+
+.popUp {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--shadow-color);
+  backdrop-filter: blur(15px);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999999;
+  display: flex;
+  flex-direction: column;
+  visibility: hidden;
+}
+
+.popUp > .popUp-content {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  background-color: var(--fifth-color);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px var(--shadow-color);
+  min-width: 400px;
+  max-width: 500px;
+  min-height: 200px;
+  height: auto;
+}
+
+.popUp > .popUp-content > .popUp-close {
+  /* content: "X"; */
+  position: absolute;
+  top: 3px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  color: var(--text-color);
+  border-radius: 15px;
+  z-index: 1;
+}
+
+.popUp > .popUp-content > .popUp-title {
+  width: 100%;
+  height: 50px;
+  padding: 15px;
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 20px;
+  background-color: var(--forth-color);
+  position: absolute;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  border-top: transparent;
+  text-align: center;
+  color: var(--text-color);
+  top: 0;
+}
+
+.popUp > .popUp-content > .popUp-text {
+  margin-top: 30px;
+  font-family: "Ubuntu Mono", monospace;
+  color: var(--text-color);
+  user-select: text;
+}
+
+.popUp > .popUp-content > .popUp-btn {
+  border: transparent;
+  border-radius: 5px;
+  padding: 8px;
+  color: var(--text-color);
+  background-color: rgb(224, 7, 7);
+  cursor: pointer;
+}
+
+.popUp > .popUp-content > .popUp-btn:hover {
+  background-color: rgb(184, 0, 0);
+}
+
+/* Pop Up End */
+
+/* Media queries */
+
+@media (max-width: 768px) {
+  .table-content tbody .list-body-content:last-child {
+    flex-direction: column;
+  }
+
+  .table-content tbody .list-body-content:last-child :is(a, button) {
+    flex-direction: column;
+    margin: 5px 0;
+    width: 120px;
+  }
+
+  .table-content tbody .list-body-content:last-child :is(a, button) p {
+    display: none;
+  }
+
+  .top > .btn button p {
+    display: none;
+  }
+}
+
+@media (max-width: 1024px) {
+  #actions {
+    display: block !important;
+  }
+}
+
+/* Media queries End */
+
+/* Users End */

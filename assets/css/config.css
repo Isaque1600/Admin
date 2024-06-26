@@ -1,0 +1,100 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;600;700&family=Ubuntu+Mono:wght@400;700&display=swap");
+@import url(colors.css);
+
+/* font-family: 'Inter', sans-serif; */
+/* font-family: 'Ubuntu Mono', monospace; */
+
+/* config */
+
+.config-section {
+  border: 2px solid var(--forth-color);
+  background-color: var(--forth-color);
+  border-radius: 15px;
+  padding: 15px;
+  margin: 10px;
+  min-width: 200px;
+}
+
+.sistemas {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.pessoas {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.top {
+  display: flex;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 700;
+  width: 100%;
+}
+
+.top p {
+  font-family: "Ubuntu Mono", monospace !important;
+}
+
+.themes-wrapper {
+  display: flex;
+  margin-top: 50px;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.themes-wrapper > .top {
+  font-family: "Ubuntu Mono", monospace;
+  font-weight: 700;
+  font-size: 17px;
+  padding: 16px 16px;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+}
+
+.themes-wrapper > .content {
+  padding: 5px 16px;
+  width: 100%;
+  display: flex;
+  gap: 30px;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.themes-wrapper > .content > .theme {
+  display: flex;
+  flex-direction: column;
+  border-radius: 5%;
+  overflow: hidden;
+  cursor: pointer;
+  width: 200px;
+  height: 100px;
+  justify-content: flex-end;
+  font-weight: 600;
+  font-size: 17px;
+  text-decoration: none;
+}
+
+.themes-wrapper > .content > .theme > .img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: #b0b0b052;
+}
+
+.themes-wrapper > .content > .theme > .img > svg {
+  color: var(--text-color);
+  scale: 200%;
+}
+
+.themes-wrapper > .content > .theme > p {
+  color: var(--text-color);
+  background-color: #b0b0b0ac;
+  padding: 1px 10px;
+}
+
+/* config End */
