@@ -7,8 +7,6 @@ use PDOException;
 
 class Conn
 {
-
-    // protected string $dbType;
     protected string $dbPort;
     protected string $dbHost;
     protected string $dbName;

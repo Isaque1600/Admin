@@ -34,7 +34,6 @@ class Relatorio
         $cols = ['Contadores' => "string", 'Qtd' => 'number'];
         $rows = $this->data['data'];
 
-        // $this->data['json'] = $object->getJson($name, $cols, $rows);
         $this->data['json'] = $object->getJson($name, $cols, $rows);
 
         $loadView = new ConfigView('adm/Views/reports/getchart', $this->data);
@@ -56,7 +55,6 @@ class Relatorio
         $cols = ['Contadores' => "string", 'Qtd' => 'number'];
         $rows = $this->data['data'];
 
-        // $this->data['json'] = $object->getJson($name, $cols, $rows);
         $this->data['json'] = $object->getJson($name, $cols, $rows);
 
         $loadView = new ConfigView('adm/Views/reports/getchart', $this->data);

@@ -232,7 +232,6 @@ class RegisterUser
 
         } catch (PDOException $err) {
             throw $err;
-            // die("Error has occurred" . $err);
         }
     }
 

@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="<?php echo IMG_PATH ?>iconsite.ico" type="image/x-icon" />
 </head>
 
-<body class="<?php echo (isset ($_COOKIE['theme'])) ? $_COOKIE['theme'] . "-theme" : "" ?>">
+<body class="<?php echo (isset($_COOKIE['theme'])) ? $_COOKIE['theme'] . "-theme" : "" ?>">
     <!-- Header fixed -->
     <header class="header">
         <div class="nav-bar">
@@ -114,12 +114,6 @@
                             style="background: url(<? echo IMG_PATH ?>LightTheme.png);" alt="DarkTheme">
                             <p>Light</p>
                         </a>
-                        <!-- <a href="<?php echo DEFAULT_URL ?>config/mudarTema" class="theme custom">
-                            <div class="img">
-                                <i data-feather="camera-off"></i>
-                            </div>
-                            <p>Custom</p>
-                        </a> -->
                     </div>
                 </div>
 

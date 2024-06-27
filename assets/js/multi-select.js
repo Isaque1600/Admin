@@ -9,13 +9,8 @@ $(document).ready(function () {
         $input.val($input.val() + $(element).html() + ";");
       }
     });
-
-    // .forEach((element) => {
-    //   if ($input.val().search(element.innerHTML + ";") != -1) {
-    //     $input.val($input.val() + element.innerHTML + ";");
-    //   }
-    // });
   }
+
   $(".multi-select").on("click", function (e) {
     if (!$(this).children(".selectBox").is(":hover")) {
       $(this).toggleClass("active");

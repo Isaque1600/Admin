@@ -203,14 +203,6 @@ $(document).ready(function () {
     }
   });
 
-  // $("").on("click", function () {
-  //   if ($(".form-register-user").is(":hidden")) {
-  //     $(".users-section").css({ filter: "blur(5px) brightness(50%)" });
-  //   } else {
-  //     $(".users-section").css({ filter: "none" });
-  //   }
-  // });
-
   $(".dropdown-type").on("click", function () {
     toggleSelect(".dropdown-type", ".type");
   });
@@ -282,7 +274,7 @@ $(document).ready(function () {
 
   /* Form End */
 
-  // Pop Up Delete
+  /* Pop Up Delete */
 
   $(".delete").on("click", function () {
     var type = $(".type").text() != "" ? $(".type").text() : "Clientes";
@@ -302,9 +294,6 @@ $(document).ready(function () {
       $(window).attr("location", `deletar?id=${id}&name=${name}`);
     });
   });
-
-  // Pop Up Delete scroller
-  // $(".scroller").attachDragger();
 
   /* Main Content End */
 });

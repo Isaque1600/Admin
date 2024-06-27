@@ -34,10 +34,6 @@ class ConfigController extends Config
             $this->urlController = "Home";
             $this->urlMethod = "index";
         }
-
-        // var_dump($this->urlController);
-        // var_dump($this->urlMethod);
-
     }
 
     public function loadPage()
@@ -46,9 +42,7 @@ class ConfigController extends Config
         try {
             $classPage = new $classLoad();
             $classPage->{$this->urlMethod}($this->urlParameters);
-            // var_dump($classPage);
         } catch (Error $err) {
-            // die($err);
             $classLoad = "\\Adm\Controllers\\" . "NotFound";
             $classPage = new $classLoad();
             $classPage->index();

@@ -66,8 +66,6 @@ $(document).ready(function () {
       async: false,
     });
 
-    // console.log(jsonData);
-
     return [jsonData.responseText, jsonData.responseJSON];
   }
 

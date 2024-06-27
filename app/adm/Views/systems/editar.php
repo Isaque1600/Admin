@@ -1,10 +1,6 @@
 <?php
 
 $dataForm = (isset($data['form'])) ? $data['form'] : null;
-// var_dump($dataForm);
-// var_dump($data);
-
-// var_dump((isset($data['error'])) ? $data['error'] : "");
 
 if (isset($data['result'])) {
     if ($data['result'] == "succeed") {

@@ -2,8 +2,6 @@
 
 namespace Adm\Controllers;
 
-// error_reporting(E_ALL);
-
 use Adm\Models\Encryption;
 use Adm\Models\Helpers\AdmDelete;
 use Adm\Models\Helpers\AdmInsert;
@@ -51,7 +49,6 @@ class Usuarios
             unset($this->data['allColumns'][array_search("NOME", $this->data['allColumns'])]);
 
             if (isset($this->dataForm) && !empty($this->dataForm) && !isset($this->dataForm['result'])) {
-                //$this->data['type'] = (isset ($_GET['type'])) ? $_GET['type'] : ((isset ($this->dataForm['type'])) ? $this->dataForm['type'] : "Clientes");
                 $this->data['type'] = (isset($this->dataForm['type'])) ? $this->dataForm['type'] : "Clientes";
 
                 $this->data = array_merge($this->data, $this->dataForm);
@@ -63,7 +60,6 @@ class Usuarios
 
                     $this->data['page'] = $urlParameters['page'];
                     $offset = ($limit * ($this->data['page'] - 1));
-
                 }
 
                 if (isset($this->dataForm['columns']) && !empty($this->dataForm['columns'])) {
@@ -86,16 +82,11 @@ class Usuarios
                     if ($this->data['type'] == "Clientes" || empty($this->data['type'])) {
                         $resultQuery = $listUsers->selectClientes($offset, $limit, $this->data['situacao'], "," . $selectedColumns);
                         $this->data['data'] = $resultQuery;
-
                     } else {
-                        // $this->data['allColumns'][] = "SENHA";
-
                         $resultQuery = $listUsers->selectContador($offset, $limit, $this->data['situacao'], "," . $selectedColumns);
                         $this->data['data'] = $resultQuery;
-
                     }
                 }
-
             } else {
                 if (!empty($select->select("COLUMNS", $_SESSION['user']))) {
                     $selectedColumns = str_replace(";", ",", $select->select("COLUMNS", $_SESSION['user'])['columns']);
@@ -118,7 +109,6 @@ class Usuarios
 
                 $this->data['page-limit'] = ceil($select->pagination('Clientes', 'Ativo')) / 25;
             }
-
         } catch (PDOException $err) {
             $this->data['error'] = $err->getMessage();
         }
@@ -129,7 +119,6 @@ class Usuarios
 
         $loadView = new ConfigView("adm/Views/users/users", $this->data);
         $loadView->renderView();
-
     }
 
     public function cadastrar(?array $urlParameters = null)
@@ -159,25 +148,21 @@ class Usuarios
             try {
                 if ($this->dataForm['type'] == "cliente") {
                     $this->dataForm['ven_cert'] = $dbDate;
-                    // $this->registerUser->registerCliente($this->dataForm);
                     var_dump($this->registerUser->registerCliente($this->dataForm));
                 } else {
                     $this->dataForm['ven_cert'] = $dbDate;
                     $this->registerUser->registerContador($this->dataForm);
                 }
-                // $this->data['result'] = "succeed";
                 $this->data['form']['name'] = $this->dataForm['name'];
             } catch (PDOException $err) {
                 $this->dataForm['ven_cert'] = $date;
                 $this->data['form'] = $this->dataForm;
                 $this->data['result'] = $err->getMessage();
             }
-
         }
 
         $loadView = new ConfigView("adm/Views/users/form", $this->data);
         $loadView->renderView();
-
     }
 
     public function visualizar(?array $urlParameters = null)
@@ -253,12 +238,10 @@ class Usuarios
             }
         }
 
-        // var_dump($this->data['form']);
 
         if (isset($this->dataForm['submit'])) {
             unset($this->dataForm['submit']);
 
-            // var_dump($this->dataForm);
 
             try {
                 $password = (isset($this->dataForm['senha'])) ? $this->encryption->encrypt($this->dataForm['senha']) : NULL;
@@ -273,7 +256,6 @@ class Usuarios
                     $update->update(['LOGIN' => $this->dataForm['nome'], 'SENHA' => $password, 'SITUACAO' => $this->dataForm['situacao'], 'TIPO' => $this->dataForm['tipo'], 'id' => $this->data['form']['NOME']], "USUARIOS");
                     $this->dataForm['senha'] = $password;
                 }
-                // var_dump($update);
 
                 $this->data['result'] = "succeed";
                 $this->dataForm['ven_cert'] = formatDateToHTML($this->dataForm['ven_cert']);
@@ -287,9 +269,6 @@ class Usuarios
                 $this->dataForm['ven_cert'] = formatDateToHTML($this->dataForm['ven_cert']);
                 $this->data['result'] = $err->getMessage();
             }
-
-            // var_dump($this->data);
-
         }
 
         $loadView = new ConfigView("adm/Views/users/editar", $this->data);

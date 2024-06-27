@@ -3,7 +3,6 @@
 $dataForm = (isset($data['form'])) ? $data['form'] : null;
 $systems = $data['systs'];
 $accountants = $data['accountants'];
-// var_dump($data);
 
 if (isset($data['result'])) {
     if ($data['result'] == "succeed") {

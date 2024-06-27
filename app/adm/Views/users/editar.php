@@ -3,10 +3,6 @@
 $dataForm = (isset($data['form'])) ? $data['form'] : null;
 $accountants = (isset($data['accountants'])) ? $data['accountants'] : null;
 $systems = (isset($data['systems'])) ? $data['systems'] : null;
-// var_dump($dataForm);
-// var_dump($data);
-
-// var_dump((isset($data['error'])) ? $data['error'] : "");
 
 if (isset($data['result'])) {
     if ($data['result'] == "succeed") {

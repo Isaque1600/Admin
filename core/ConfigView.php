@@ -12,8 +12,6 @@ class ConfigView
     {
         $this->name = $name;
         $this->data = $data;
-        // var_dump($this->name);
-        // var_dump($this->data);
     }
 
     public function renderView()
@@ -21,7 +19,7 @@ class ConfigView
         $data = $this->data;
 
         if (file_exists("app/" . $this->name . ".php")) {
-            include("app/" . $this->name . ".php");
+            include ("app/" . $this->name . ".php");
         } else {
             die("An error has occurred, contact the support");
         }
