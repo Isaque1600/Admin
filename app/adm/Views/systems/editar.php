@@ -132,8 +132,8 @@ if (isset($data['result'])) {
                                 <label for="nome" class="text-label">Nome do Sistema:</label>
                             </div>
                             <div class="row submit">
-                                <button type="submit" name="submit" value="register"><i data-feather="file-plus"></i>
-                                    <p>Cadastrar</p>
+                                <button type="submit" name="submit" value="register"><i data-feather="edit-3"></i>
+                                    <p>Editar</p>
                                 </button>
                             </div>
                         </div>

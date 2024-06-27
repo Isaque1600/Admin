@@ -11,7 +11,7 @@ $systems = (isset($data['systs'])) ? $data['systs'] : null;
 if (isset($data['result'])) {
     if ($data['result'] == "succeed") {
         $result['title'] = "Cadastro editado com sucesso!";
-        $result['text'] = "O cadastro do usuário: {$dataForm['nome']}, foi editado com sucesso!";
+        $result['text'] = "O cadastro do usuário: {$dataForm['NOME']}, foi editado com sucesso!";
     } else {
         $result['title'] = "Error inesperado!";
         $result['text'] = "Um erro inesperado ocorreu\nCódigo do erro:{$data['result']}\nAnote o código do erro e contate o desenvolvedor!";
@@ -140,7 +140,7 @@ if (isset($data['result'])) {
                             </div>
                             <div class="row all">
                                 <input type="text" name="nome" id="nome" class="input-text" placeholder=' '
-                                    value="<?php echo $dataForm['NOME'] = (isset($dataForm['NOME']) && !isset($data['result'])) ? $dataForm['NOME'] : "" ?>"
+                                    value="<?php echo $dataForm['NOME'] = (isset($dataForm['NOME'])) ? $dataForm['NOME'] : "" ?>"
                                     required>
                                 <label for="nome" class="text-label">Nome Fantasia:</label>
                             </div>
@@ -318,8 +318,8 @@ if (isset($data['result'])) {
                             </div>
                             <div class="row submit">
                                 <button type="submit" name="submit" value="registerUser" class="submitBtn"><i
-                                        data-feather="user-plus"></i>
-                                    <p>Cadastrar</p>
+                                        data-feather="edit-3"></i>
+                                    <p>Editar</p>
                                 </button>
                             </div>
                         </div>

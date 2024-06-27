@@ -36,6 +36,8 @@ class RegisterUser
 
         $userData = $this->formatData($userData);
 
+        var_dump($userData);
+
         try {
             $personInsert = $this->connect->prepare("INSERT INTO `PESSOAS`(
                 `NOME`,

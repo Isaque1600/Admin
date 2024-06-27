@@ -11,6 +11,12 @@ $(document).ready(function () {
     $(this).attr("placeholder", "(00) 00000-0000");
   });
 
+  $("#cep").on("focus", function (e) {
+    e.preventDefault();
+
+    $(this).attr("placeholder", "00000-000");
+  });
+
   $("#uf").on("keyup", function () {
     $(this).val($(this).val().toUpperCase());
   });

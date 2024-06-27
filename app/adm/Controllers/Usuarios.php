@@ -12,9 +12,17 @@ use Adm\Models\Helpers\AdmUpdate;
 use Adm\Models\ListUsers;
 use Adm\Models\RegisterUser;
 use Core\ConfigView;
-use ErrorException;
-use Exception;
 use PDOException;
+
+function formatDateToDB(string $date): string
+{
+    return implode('-', array_reverse(explode('/', $date)));
+}
+
+function formatDateToHTML(string $date): string
+{
+    return implode('/', array_reverse(explode('-', $date)));
+}
 
 class Usuarios
 {
@@ -102,6 +110,12 @@ class Usuarios
                 }
 
                 $this->data['data'] = $listUsers->selectClientes($offset, $limit, 'Ativo', ",{$selectedColumns}");
+
+                $this->data['data'] = array_map(function ($value) {
+                    $value['VEN_CERT'] = implode('/', array_reverse(explode('-', $value['VEN_CERT'])));
+                    return $value;
+                }, $this->data['data']);
+
                 $this->data['page-limit'] = ceil($select->pagination('Clientes', 'Ativo')) / 25;
             }
 
@@ -135,19 +149,26 @@ class Usuarios
         if (isset($this->dataForm['submit'])) {
             unset($this->dataForm['submit']);
 
+            $date = $this->dataForm['ven_cert'];
+            $dbDate = formatDateToDB($date);
+
             $this->dataForm['type'] = (empty($this->dataForm['type'])) ? 'cliente' : strtolower($this->dataForm['type']);
 
             $this->dataForm['SITUACAO'] = (isset($this->dataForm['SITUACAO']) && $this->dataForm['SITUACAO'] == 'Ativo') ? 'SIM' : $this->dataForm['SITUACAO'];
 
             try {
                 if ($this->dataForm['type'] == "cliente") {
-                    $this->registerUser->registerCliente($this->dataForm);
+                    $this->dataForm['ven_cert'] = $dbDate;
+                    // $this->registerUser->registerCliente($this->dataForm);
+                    var_dump($this->registerUser->registerCliente($this->dataForm));
                 } else {
+                    $this->dataForm['ven_cert'] = $dbDate;
                     $this->registerUser->registerContador($this->dataForm);
                 }
-                $this->data['result'] = "succeed";
+                // $this->data['result'] = "succeed";
                 $this->data['form']['name'] = $this->dataForm['name'];
             } catch (PDOException $err) {
+                $this->dataForm['ven_cert'] = $date;
                 $this->data['form'] = $this->dataForm;
                 $this->data['result'] = $err->getMessage();
             }
@@ -170,10 +191,12 @@ class Usuarios
                     $this->data['data'] = $select->select('CONTADORES', $urlParameters['id']);
                     $this->data['data']['senha_contador'] = (!is_null($this->data['data']['senha_contador'])) ? $this->encryption->decrypt($this->data['data']['senha_contador']) : $this->data['data']['senha_contador'];
                     $this->data['data']['SENHA_BACKUP'] = (!is_null($this->data['data']['SENHA_BACKUP'])) ? $this->encryption->decrypt($this->data['data']['SENHA_BACKUP']) : $this->data['data']['SENHA_BACKUP'];
-                } elseif (in_array($urlParameters['type'], ['Cliente', 'cliente', 'Clientes', 'clientes'])) {
+                } elseif (in_array($urlParameters['type'], ['Cliente', 'cliente', 'Clientes', 'clientes', ""])) {
                     $this->data['data'] = $select->select('PESSOAS', $urlParameters['id']);
                     $this->data['data']['SENHA_BACKUP'] = (!is_null($this->data['data']['SENHA_BACKUP'])) ? $this->data['data']['SENHA_BACKUP'] : $this->data['data']['SENHA_BACKUP'];
                 }
+
+                $this->data['data']['VEN_CERT'] = formatDateToHTML($this->data['data']['VEN_CERT']);
             } catch (PDOException $err) {
                 $this->data['error'] = $err->getMessage();
             }
@@ -223,6 +246,7 @@ class Usuarios
             try {
                 $this->data['form'] = (in_array($urlParameters['type'], ['Clientes', 'Cliente', "CLIENTE", "CLIENTES", ""]) || empty($urlParameters['type'])) ? $select->select('PESSOAS', $urlParameters['id']) : $select->select('CONTADORES', $urlParameters['id']);
                 $this->data['form']['senha_contador'] = (isset($this->data['form']['senha_contador'])) ? $this->encryption->decrypt($this->data['form']['senha_contador']) : NULL;
+                $this->data['form']['VEN_CERT'] = formatDateToHTML($this->data['form']['VEN_CERT']);
             } catch (PDOException $err) {
                 $this->data['error'] = $err->getMessage();
             }
@@ -240,6 +264,7 @@ class Usuarios
                 $password = $this->dataForm['senha'];
                 unset($this->dataForm['senha']);
 
+                $this->dataForm['ven_cert'] = formatDateToDB($this->dataForm['ven_cert']);
 
                 $update->update(array_merge(['COD_PES' => (int) $urlParameters['id']], $this->dataForm), 'PESSOAS');
 
@@ -249,9 +274,14 @@ class Usuarios
                 // var_dump($update);
 
                 $this->data['result'] = "succeed";
+                $this->dataForm['ven_cert'] = formatDateToHTML($this->dataForm['ven_cert']);
+
+                $this->dataForm = array_change_key_case($this->dataForm, CASE_UPPER);
+
                 $this->data['form'] = $this->dataForm;
                 $this->data['form']['senha'] = (isset($password)) ? $this->encryption->decrypt($password) : NULL;
             } catch (PDOException $err) {
+                $this->dataForm['ven_cert'] = formatDateToHTML($this->dataForm['ven_cert']);
                 $this->data['result'] = $err->getMessage();
             }
 
