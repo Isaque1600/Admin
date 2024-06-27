@@ -53,8 +53,9 @@ $(document).ready(function () {
   }
 
   function toggleSerial() {
+    const sistema = $("#sistema").val();
     if (
-      ["Gdoor Pro", "Gdoor Slim", "Gdoor Micro"].includes($("#sistema").val())
+      ["GDOOR PRO", "GDOOR SLIM", "GDOOR MICRO"].includes(sistema.toUpperCase())
     ) {
       $(".serial").show("fast");
     } else {

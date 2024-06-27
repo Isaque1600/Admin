@@ -46,6 +46,7 @@ class ConfigController extends Config
         try {
             $classPage = new $classLoad();
             $classPage->{$this->urlMethod}($this->urlParameters);
+            // var_dump($classPage);
         } catch (Error $err) {
             // die($err);
             $classLoad = "\\Adm\Controllers\\" . "NotFound";

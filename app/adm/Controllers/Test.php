@@ -3,6 +3,7 @@
 namespace Adm\Controllers;
 
 use Adm\Models\Encryption;
+use Adm\Models\Helpers\AdmSelect;
 use Adm\Models\Helpers\AdmUpdate;
 use Core\ConfigView;
 
@@ -16,11 +17,19 @@ class Test
     public function index()
     {
         $enc = new Encryption;
+        $select = new AdmSelect();
+        $update = new AdmUpdate;
 
-        // $enc->decrypt("");
+        $users = $select->selectAll('PESSOAS');
 
-        $loadView = new ConfigView("adm/Views/test", $this->data);
-        $loadView->renderView();
+        foreach ($users as $key => $value) {
+            if ($value['SENHA_BACKUP'] != NULL && count($value['SENHA_BACKUP']) < 172) {
+                $update->update(['COD_PES' => $value['COD_PES'], 'SENHA_BACKUP' => $enc->encrypt($value['SENHA_BACKUP'])], 'PESSOAS');
+            }
+        }
+
+        // $users = $select->selectAll('PESSOAS');
+
     }
 
 }

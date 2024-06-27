@@ -47,7 +47,7 @@ class AdmUpdate
             return $query;
 
         } catch (PDOException $err) {
-            // var_dump($query);
+            var_dump($query);
             throw $err;
         }
 

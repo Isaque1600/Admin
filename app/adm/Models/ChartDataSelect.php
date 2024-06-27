@@ -71,7 +71,8 @@ class ChartDataSelect
 
     private function setConnect()
     {
-        $this->connect = $connect = new Conn;
+        $connect = new Conn;
+        $this->connect = $connect->connect();
         $this->connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 

@@ -2,7 +2,7 @@
 
 $dataForm = (isset($data['form'])) ? $data['form'] : null;
 $accountants = (isset($data['accountants'])) ? $data['accountants'] : null;
-$systems = (isset($data['systs'])) ? $data['systs'] : null;
+$systems = (isset($data['systems'])) ? $data['systems'] : null;
 // var_dump($dataForm);
 // var_dump($data);
 
@@ -220,14 +220,14 @@ if (isset($data['result'])) {
                                 <div class="select dropdown-contador">
                                     <input type="text" name="contador" id="contador" class="input-text contador-box"
                                         placeholder="Selecione o contador"
-                                        value="<?php echo $dataForm['CONTADOR'] = (isset($dataForm['CONTADOR'])) ? $dataForm['CONTADOR'] : "" ?>"
+                                        value="<?php echo $dataForm['CONTADOR'] = (isset($dataForm['CONTADOR'])) ? ucfirst($dataForm['CONTADOR']) : "" ?>"
                                         readonly />
                                     <ul class="options">
                                         <li class="option none">Nenhum</li>
                                         <?php
 
                                         foreach ($accountants as $key => $value) {
-                                            echo "<li class=\"option\">{$value['NOME']}</li>";
+                                            echo "<li class=\"option\">" . ucfirst($value['NOME']) . "</li>";
                                         }
 
                                         ?>
@@ -238,14 +238,14 @@ if (isset($data['result'])) {
                                 <div class="select dropdown-sistema">
                                     <input type="text" name="sistema" id="sistema" class="input-text sistema"
                                         placeholder="Selecione o sistema"
-                                        value="<?php echo $dataForm['SISTEMA'] = (isset($dataForm['SISTEMA'])) ? $dataForm['SISTEMA'] : "" ?>"
+                                        value="<?php echo $dataForm['SISTEMA'] = (isset($dataForm['SISTEMA'])) ? ucfirst($dataForm['SISTEMA']) : "" ?>"
                                         readonly />
                                     <ul class="options">
                                         <li class="option none">Nenhum</li>
                                         <?php
 
                                         foreach ($systems as $key => $value) {
-                                            echo "<li class=\"option\">{$value['nome']}</li>";
+                                            echo "<li class=\"option\">" . ucfirst($value['nome']) . "</li>";
                                         }
 
                                         ?>

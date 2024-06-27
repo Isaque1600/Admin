@@ -245,6 +245,7 @@ class Usuarios
         if (isset($urlParameters['id']) && isset($urlParameters['type'])) {
             try {
                 $this->data['form'] = (in_array($urlParameters['type'], ['Clientes', 'Cliente', "CLIENTE", "CLIENTES", ""]) || empty($urlParameters['type'])) ? $select->select('PESSOAS', $urlParameters['id']) : $select->select('CONTADORES', $urlParameters['id']);
+                $this->data['form']['SENHA_BACKUP'] = (isset($this->data['form']['SENHA_BACKUP'])) ? $this->encryption->decrypt($this->data['form']['SENHA_BACKUP']) : $this->data['form']['SENHA_BACKUP'];
                 $this->data['form']['senha_contador'] = (isset($this->data['form']['senha_contador'])) ? $this->encryption->decrypt($this->data['form']['senha_contador']) : NULL;
                 $this->data['form']['VEN_CERT'] = formatDateToHTML($this->data['form']['VEN_CERT']);
             } catch (PDOException $err) {
@@ -260,8 +261,8 @@ class Usuarios
             // var_dump($this->dataForm);
 
             try {
-
-                $password = $this->dataForm['senha'];
+                $password = (isset($this->dataForm['senha'])) ? $this->encryption->encrypt($this->dataForm['senha']) : NULL;
+                $passwordBackup = (isset($this->dataForm['senha_backup'])) ? $this->encryption->decrypt($this->dataForm['senha_backup']) : NULL;
                 unset($this->dataForm['senha']);
 
                 $this->dataForm['ven_cert'] = formatDateToDB($this->dataForm['ven_cert']);
@@ -270,11 +271,13 @@ class Usuarios
 
                 if ($this->dataForm['tipo'] == "contador") {
                     $update->update(['LOGIN' => $this->dataForm['nome'], 'SENHA' => $password, 'SITUACAO' => $this->dataForm['situacao'], 'TIPO' => $this->dataForm['tipo'], 'id' => $this->data['form']['NOME']], "USUARIOS");
+                    $this->dataForm['senha'] = $password;
                 }
                 // var_dump($update);
 
                 $this->data['result'] = "succeed";
                 $this->dataForm['ven_cert'] = formatDateToHTML($this->dataForm['ven_cert']);
+                $this->dataForm['senha_backup'] = $passwordBackup;
 
                 $this->dataForm = array_change_key_case($this->dataForm, CASE_UPPER);
 

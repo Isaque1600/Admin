@@ -60,7 +60,7 @@ $(document).ready(function () {
   function getData() {
     var jsonData = $.ajax({
       type: "POST",
-      url: DEFAULT_URL + "relatorio/getChart",
+      url: DEFAULT_URL + "/Relatorio/getChart",
       data: "jsonRequired",
       dataType: "JSON",
       async: false,
@@ -74,22 +74,20 @@ $(document).ready(function () {
   function getDataSped() {
     var jsonData = $.ajax({
       type: "POST",
-      url: DEFAULT_URL + "relatorio/getChartSped",
+      url: DEFAULT_URL + "/Relatorio/getChartSped",
       data: "jsonRequired",
       dataType: "JSON",
       async: false,
     });
-
-    // console.log(jsonData);
 
     return [jsonData.responseText, jsonData.responseJSON];
   }
 
   function drawChart() {
     var Data = getData();
-    // console.log(Data);
+    console.log(Data);
     var jsonData = Data[1];
-    var name = Data[1].name;
+    var name = jsonData.name;
 
     var data = new google.visualization.DataTable(jsonData);
 
