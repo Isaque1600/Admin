@@ -20,6 +20,7 @@ class AdmSelect
 
             $query = $this->tableForSelect($table);
 
+
             if ($query->execute()) {
                 return $query->fetchAll(PDO::FETCH_ASSOC);
             }
@@ -105,13 +106,15 @@ class AdmSelect
 
         try {
 
-            $query = ($type == "Clientes") ? "SELECT COD_PES FROM PESSOAS WHERE TIPO = 'cliente' AND $selectColumn LIKE :search ORDER BY $selectColumn " : "SELECT COD_PES FROM Contadores WHERE $selectColumn LIKE :search ORDER BY $selectColumn ";
+            $query = ($type == "Clientes") ? "SELECT COD_PES FROM PESSOAS WHERE TIPO = 'cliente' AND $selectColumn LIKE :search" : "SELECT COD_PES FROM Contadores WHERE $selectColumn LIKE :search";
 
             if ($active == "Ativos") {
-                $query .= " AND SITUACAO = 'ativo' OR SITUACAO = 'SIM'";
+                $query .= " AND (SITUACAO = 'ativo' OR SITUACAO = 'SIM')";
             } elseif ($active == "Inativos") {
-                $query .= " AND SITUACAO = 'NÃO' OR SITUACAO = 'inativo'";
+                $query .= " AND (SITUACAO = 'NÃO' OR SITUACAO = 'inativo')";
             }
+
+            $query .= " ORDER BY $selectColumn;";
 
             $query = $this->connect->prepare($query);
 

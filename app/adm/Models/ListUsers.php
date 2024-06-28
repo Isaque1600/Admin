@@ -76,9 +76,9 @@ class ListUsers
             $query = ($type == "Clientes") ? "SELECT COD_PES, NOME{$columns} FROM PESSOAS WHERE tipo = 'cliente' AND $column LIKE CONCAT('%', :search, '%')" : "SELECT COD_PES, NOME{$columns} FROM Contadores WHERE NOME LIKE CONCAT('%', :search, '%')";
 
             if ($active == "Ativos") {
-                $query .= " AND SITUACAO = 'SIM'";
+                $query .= " AND (SITUACAO = 'ativo' OR SITUACAO = 'SIM')";
             } elseif ($active == "Inativos") {
-                $query .= " AND SITUACAO <> 'SIM'";
+                $query .= " AND (SITUACAO = 'NÃO' OR SITUACAO = 'inativo')";
             }
 
             $searchData = $this->connect->prepare($query . " ORDER BY $column LIMIT :limit OFFSET :offset");
