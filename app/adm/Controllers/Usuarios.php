@@ -100,7 +100,7 @@ class Usuarios
                     $this->data['selectedColumns'] = explode(",", $selectedColumns);
                 }
 
-                $this->data['data'] = $listUsers->selectClientes($offset, $limit, 'Ativo', ",{$selectedColumns}");
+                $this->data['data'] = $listUsers->selectClientes($offset, $limit, 'Ativos', ",{$selectedColumns}");
 
                 $this->data['data'] = array_map(function ($value) {
                     $value['VEN_CERT'] = implode('/', array_reverse(explode('-', $value['VEN_CERT'])));

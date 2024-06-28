@@ -18,10 +18,10 @@ class ListUsers
 
             $query = "SELECT COD_PES, NOME{$columns} FROM PESSOAS WHERE tipo = 'cliente'";
 
-            if ($active == "Ativo") {
-                $query .= " AND SITUACAO = 'SIM'";
-            } elseif ($active == "Inativo") {
-                $query .= " AND SITUACAO <> 'SIM'";
+            if ($active == "Ativos") {
+                $query .= " AND (SITUACAO = 'ativo' OR SITUACAO = 'SIM')";
+            } elseif ($active == "Inativos") {
+                $query .= " AND (SITUACAO = 'NÃO' OR SITUACAO = 'inativo')";
             }
 
             $clientesData = $this->connect->prepare("$query ORDER BY NOME LIMIT :limit OFFSET :offset");
@@ -46,10 +46,10 @@ class ListUsers
 
             $query = "SELECT COD_PES, NOME, senha_contador{$columns} FROM Contadores";
 
-            if ($active == "Ativo") {
-                $query .= " WHERE SITUACAO = 'SIM'";
-            } elseif ($active == "Inativo") {
-                $query .= " WHERE SITUACAO <> 'SIM'";
+            if ($active == "Ativos") {
+                $query .= " AND (SITUACAO = 'ativo' OR SITUACAO = 'SIM')";
+            } elseif ($active == "Inativos") {
+                $query .= " AND (SITUACAO = 'NÃO' OR SITUACAO = 'inativo')";
             }
 
             $contadorData = $this->connect->prepare("$query ORDER BY NOME LIMIT :limit OFFSET :offset");
