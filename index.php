@@ -23,5 +23,9 @@ if (!isset($_SESSION['newsession'])) {
     header("location:../../Login/?cod=401");
 }
 
+if (!isset($_SESSION['is_superuser']) || $_SESSION['is_superuser'] != 1) {
+    header("location:../../Login/?cod=401");
+}
+
 $url->loadPage();
 
