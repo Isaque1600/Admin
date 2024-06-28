@@ -108,9 +108,9 @@ class AdmSelect
             $query = ($type == "Clientes") ? "SELECT COD_PES FROM PESSOAS WHERE TIPO = 'cliente' AND $selectColumn LIKE :search ORDER BY $selectColumn " : "SELECT COD_PES FROM Contadores WHERE $selectColumn LIKE :search ORDER BY $selectColumn ";
 
             if ($active == "Ativos") {
-                $query .= " AND SITUACAO = 'SIM'";
+                $query .= " AND SITUACAO = 'ativo' OR SITUACAO = 'SIM'";
             } elseif ($active == "Inativos") {
-                $query .= " AND SITUACAO <> 'SIM'";
+                $query .= " AND SITUACAO = 'NÃO' OR SITUACAO = 'inativo'";
             }
 
             $query = $this->connect->prepare($query);
