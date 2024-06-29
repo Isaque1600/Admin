@@ -5,12 +5,6 @@ $(document).ready(function () {
     $(this).attr("placeholder", "00.000.000/0000-00");
   });
 
-  $("#contato").on("focus", function (e) {
-    e.preventDefault();
-
-    $(this).attr("placeholder", "(00) 00000-0000");
-  });
-
   $("#cep").on("focus", function (e) {
     e.preventDefault();
 
@@ -19,15 +13,6 @@ $(document).ready(function () {
 
   $("#uf").on("keyup", function () {
     $(this).val($(this).val().toUpperCase());
-  });
-
-  $("#contato").inputmask("(99) 99999-9999", {
-    placeholder: "",
-    showMaskOnHover: false,
-    showMaskOnFocus: false,
-    clearIncomplete: true,
-    clearMaskOnLostFocus: true,
-    jitMasking: true,
   });
 
   $("#uf").inputmask("aa", {

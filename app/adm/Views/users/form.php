@@ -226,7 +226,7 @@ if (isset($data['result'])) {
                                         <?php
 
                                         foreach ($accountants as $key => $value) {
-                                            echo "<li class=\"option\">{$value['NOME']}</li>";
+                                            echo "<li class=\"option\">" . ucfirst($value['NOME']) . "</li>";
                                         }
 
                                         ?>
@@ -312,7 +312,7 @@ if (isset($data['result'])) {
                             </div>
                             <div class="row cliente obs">
                                 <label for="obs">Observação:</label>
-                                <textarea name="obs" id="obs" cols="30" rows="10" value="hello"></textarea>
+                                <textarea name="obs" id="obs" cols="10" rows="10" maxlength="250"></textarea>
                             </div>
                             <div class="row submit">
                                 <button type="submit" name="submit" value="registerUser" class="submitBtn"><i
