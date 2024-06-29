@@ -148,7 +148,6 @@ class Usuarios
             try {
                 if ($this->dataForm['type'] == "cliente") {
                     $this->dataForm['ven_cert'] = $dbDate;
-                    var_dump($this->registerUser->registerCliente($this->dataForm));
                 } else {
                     $this->dataForm['ven_cert'] = $dbDate;
                     $this->registerUser->registerContador($this->dataForm);

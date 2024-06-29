@@ -22,12 +22,13 @@ class AdmDelete
             $query = $this->tableForDelete();
 
             if ($this->table == "contador") {
-                $data = [':id' => $id, ":name" => $name];
+                $query->bindParam(':id', $id, PDO::PARAM_INT);
+                $query->bindParam(':name', $name, PDO::PARAM_STR);
             } else {
-                $data = [':id' => $id];
+                $query->bindParam(':id', $id, PDO::PARAM_INT);
             }
 
-            if ($query->execute($data)) {
+            if ($query->execute()) {
                 return "success";
             }
 
@@ -41,15 +42,14 @@ class AdmDelete
 
     private function tableForDelete()
     {
-        switch ($this->table) {
-            case 'cliente' or 'Cliente' or 'Clientes' or '':
-                return $this->connect->prepare("DELETE FROM PESSOAS WHERE COD_PES = :id");
-
-            case 'contador' or 'Contador' or 'Contadores':
-                return $this->connect->prepare("DELETE `PESSOAS`.*, `USUARIOS`.* FROM `PESSOAS`, `USUARIOS` WHERE `PESSOAS`.`COD_PES` = :id and `USUARIOS`.LOGIN = :name");
-
-            case 'SISTEMAS':
-                return $this->connect->prepare("DELETE FROM SISTEMAS WHERE id = :id");
+        if (in_array($this->table, ['cliente', 'Cliente', 'Clientes', ''])) {
+            return $this->connect->prepare("DELETE FROM PESSOAS WHERE COD_PES = :id");
+        }
+        if (in_array($this->table, ['Contador', 'Contadores', 'contador'])) {
+            return $this->connect->prepare("DELETE `PESSOAS`.*, `USUARIOS`.* FROM `PESSOAS`, `USUARIOS` WHERE `PESSOAS`.`COD_PES` = :id and `USUARIOS`.LOGIN = :name");
+        }
+        if (in_array($this->table, ['SISTEMAS'])) {
+            return $this->connect->prepare("DELETE FROM SISTEMAS WHERE id = :id");
         }
     }
 

@@ -40,6 +40,8 @@ class Sistemas
 
             try {
                 $insert->insert('SISTEMAS', $this->dataForm);
+
+                $this->data['result'] = "success";
             } catch (PDOException $err) {
                 $this->data['result'] = $err->getCode();
                 $this->data['form'] = $this->dataForm;
@@ -74,8 +76,7 @@ class Sistemas
 
         if (isset($urlParameters)) {
             try {
-                $delete->delete($urlParameters['id'], "SISTEMAS");
-                $this->data['result'] = "success";
+                $this->data['result'] = $delete->delete($urlParameters['id'], "SISTEMAS");
 
                 header("location:" . DEFAULT_URL . "sistemas/listar?result=success");
             } catch (PDOException $err) {

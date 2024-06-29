@@ -9,7 +9,6 @@ use PDOException;
 class AdmUpdate
 {
     private object $connect;
-    private string $type;
     private array $data;
     private string $table;
     private string $columnsQuery;

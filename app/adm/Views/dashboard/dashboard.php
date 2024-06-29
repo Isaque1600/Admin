@@ -100,28 +100,28 @@
                     Sistemas
                 </div>
                 <div class="sistemas">
-                    <div class="box">
+                    <div class="box bg-amber-500">
                         <i data-feather="monitor"></i>
                         <p>
                             <?php echo $data['systems']['GDPRO'] ?>
                         </p>
                         <p>Gdoor Pro</p>
                     </div>
-                    <div class="box">
+                    <div class="box bg-green-500">
                         <i data-feather="monitor"></i>
                         <p>
                             <?php echo $data['systems']['GDSLIM'] ?>
                         </p>
                         <p>Gdoor Slim</p>
                     </div>
-                    <div class="box">
+                    <div class="box bg-blue-600">
                         <i data-feather="monitor"></i>
                         <p>
                             <?php echo $data['systems']['GDMICRO'] ?>
                         </p>
                         <p>Gdoor Micro</p>
                     </div>
-                    <div class="box">
+                    <div class="box bg-red-700">
                         <i data-feather="monitor"></i>
                         <p>
                             <?php echo $data['systems']['TEF'] ?>
@@ -135,14 +135,14 @@
                     <p>Usuários</p>
                 </div>
                 <div class="pessoas">
-                    <div class="box">
+                    <div class="box bg-indigo-500">
                         <i data-feather="monitor"></i>
                         <p>
                             <?php echo $data['persons']['clientes'] ?>
                         </p>
                         <p>Clientes</p>
                     </div>
-                    <div class="box">
+                    <div class="box bg-cyan-500">
                         <i data-feather="monitor"></i>
                         <p>
                             <?php echo $data['persons']['contadores'] ?>
